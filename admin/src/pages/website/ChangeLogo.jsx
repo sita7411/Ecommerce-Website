@@ -4,12 +4,14 @@ const ChangeLogo = () => {
   const [logoPreview, setLogoPreview] = useState("/logo.png"); // default
   const [selectedFile, setSelectedFile] = useState(null);
   const [loading, setLoading] = useState(false);
+  const API_URL = import.meta.env.VITE_API_URL;
+
 
   // ✅ Fetch current logo from backend on mount
   useEffect(() => {
     const fetchLogo = async () => {
       try {
-        const res = await fetch("http://localhost:4000/api/logo");
+      const res = await fetch(`${API_URL}/api/logo`);
         const data = await res.json();
         if (data.success && data.logo) {
           setLogoPreview(data.logo.url);
@@ -42,7 +44,7 @@ const ChangeLogo = () => {
       const formData = new FormData();
       formData.append("logo", selectedFile);
 
-      const res = await fetch("http://localhost:4000/api/logo", {
+    const res = await fetch(`${API_URL}/api/logo`, {
         method: "POST",
         body: formData,
       });
