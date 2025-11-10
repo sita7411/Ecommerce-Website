@@ -45,25 +45,26 @@ const ShopContextProvider = ({ children }) => {
     }
   }, []);
 
-  useEffect(() => {
-    if (!token) return;
-    fetchCart();
-    fetchWishlist();
-  }, [token]);
-
-  // --- Persist cart & wishlist to localStorage (safeguard against undefined) ---
-  useEffect(() => {
-    const cartToSave = cart || {}; // Ensure it's always an object
-    localStorage.setItem("cart", JSON.stringify(cartToSave));
-  }, [cart]);
-
-  useEffect(() => {
-    const wishlistToSave = wishlist || {}; // Ensure it's always an object
-    localStorage.setItem("wishlist", JSON.stringify(wishlistToSave));
-  }, [wishlist]);
+  // --- Logout Function (clear localStorage fully) ---
+  // Moved up to define before handleApiError for dependency stability
+  const logout = useCallback(() => {
+    setUser(null);
+    setToken(null);
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("cart");
+    localStorage.removeItem("wishlist");
+    setCart({});
+    setWishlist({});
+    setAllCartProducts([]);
+    setAllWishlistProducts([]);
+    // Optional: Redirect to home or login
+    window.location.href = '/';
+  }, []);
 
   // Helper function: Handle API errors consistently (401 logout, etc.)
-  const handleApiError = async (res, operationName) => {
+  // Wrapped in useCallback for stability, with logout as dependency
+  const handleApiError = useCallback(async (res, operationName) => {
     if (!res.ok) {
       let errorMsg = `Failed to ${operationName}. Try again.`;
       if (res.status === 401) {
@@ -90,50 +91,67 @@ const ShopContextProvider = ({ children }) => {
         throw new Error(errorMsg);
       }
     }
-  };
+  }, [logout]);
 
   // --- Fetch Cart from backend if user logs in ---
   const fetchCart = useCallback(async () => {
-  if (!token || typeof token !== 'string' || token.trim() === '') {
-    console.warn("No valid token for fetchCart");
-    setCart({});
-    return;
-  }
-  try {
-    const res = await fetch("http://localhost:4000/api/cart", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    await handleApiError(res, 'fetch cart');
-    const data = await res.json();
-    console.log("fetchCart response:", data);
-    setCart(data.cart || {});
-  } catch (err) {
-    console.error("Failed to fetch cart:", err);
-    setCart({});
-  }
-}, [token]);
-
+    if (!token || typeof token !== 'string' || token.trim() === '') {
+      console.warn("No valid token for fetchCart");
+      setCart({});
+      return;
+    }
+    try {
+      const res = await fetch("http://localhost:4000/api/cart", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      await handleApiError(res, 'fetch cart');
+      const data = await res.json();
+      console.log("fetchCart response:", data);
+      setCart(data.cart || {});
+    } catch (err) {
+      console.error("Failed to fetch cart:", err);
+      setCart({});
+    }
+  }, [token, handleApiError]);
 
   // --- Fetch Wishlist from backend if user logs in ---
   const fetchWishlist = useCallback(async () => {
-  if (!token || typeof token !== 'string' || token.trim() === '') {
-    console.warn("No valid token for fetchWishlist");
-    setWishlist({});
-    return;
-  }
-  try {
-    const res = await fetch("http://localhost:4000/api/wishlist", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    await handleApiError(res, 'fetch wishlist');
-    const data = await res.json();
-    console.log("fetchWishlist response:", data);
-    setWishlist(data.wishlist || {});
-  } catch (err) {
-    console.error("Failed to fetch wishlist:", err);
-    setWishlist({});
-  }
-}, [token]);
+    if (!token || typeof token !== 'string' || token.trim() === '') {
+      console.warn("No valid token for fetchWishlist");
+      setWishlist({});
+      return;
+    }
+    try {
+      const res = await fetch("http://localhost:4000/api/wishlist", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      await handleApiError(res, 'fetch wishlist');
+      const data = await res.json();
+      console.log("fetchWishlist response:", data);
+      setWishlist(data.wishlist || {});
+    } catch (err) {
+      console.error("Failed to fetch wishlist:", err);
+      setWishlist({});
+    }
+  }, [token, handleApiError]);
+
+  // Added fetchCart and fetchWishlist to dependencies to satisfy ESLint
+  useEffect(() => {
+    if (!token) return;
+    fetchCart();
+    fetchWishlist();
+  }, [token, fetchCart, fetchWishlist]);
+
+  // --- Persist cart & wishlist to localStorage (safeguard against ) ---
+  useEffect(() => {
+    const cartToSave = cart || {}; // Ensure it's always an object
+    localStorage.setItem("cart", JSON.stringify(cartToSave));
+  }, [cart]);
+
+  useEffect(() => {
+    const wishlistToSave = wishlist || {}; // Ensure it's always an object
+    localStorage.setItem("wishlist", JSON.stringify(wishlistToSave));
+  }, [wishlist]);
 
   // ... (rest of the file remains the same)
 
@@ -154,7 +172,7 @@ const ShopContextProvider = ({ children }) => {
               return {
                 ...product,
                 qty: cart[id]?.qty || 1,
-              size: cart[id]?.size || (product.sizes[0] || null), // ✅ fallback to first size
+                size: cart[id]?.size || (product.sizes[0] || null), // ✅ fallback to first size
               };
             } else if (res.status === 404) {
               console.warn(`Product ${id} not found in cart, skipping.`);
@@ -220,7 +238,6 @@ const ShopContextProvider = ({ children }) => {
 
     fetchWishlistProducts();
   }, [wishlist]);
-
 
   // --- Cart Functions ---
   const addToCart = async (id, qty = 1, size = null) => {
@@ -337,35 +354,34 @@ const ShopContextProvider = ({ children }) => {
 
   // --- Wishlist Functions ---
   const toggleWishlist = async (id, size = null) => {
-  if (!token || typeof token !== 'string' || token.trim() === '') {
-    alert("Please login first");
-    window.location.href = '/login';
-    return;
-  }
-  try {
-    const method = wishlist[id] ? "DELETE" : "POST";
-    const url = wishlist[id]
-      ? `http://localhost:4000/api/wishlist/${id}`
-      : "http://localhost:4000/api/wishlist";
+    if (!token || typeof token !== 'string' || token.trim() === '') {
+      alert("Please login first");
+      window.location.href = '/login';
+      return;
+    }
+    try {
+      const method = wishlist[id] ? "DELETE" : "POST";
+      const url = wishlist[id]
+        ? `http://localhost:4000/api/wishlist/${id}`
+        : "http://localhost:4000/api/wishlist";
 
-    const options = {
-      method,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      ...(method === "POST" && { body: JSON.stringify({ productId: id, size }) }),
-    };
+      const options = {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        ...(method === "POST" && { body: JSON.stringify({ productId: id, size }) }),
+      };
 
-    const res = await fetch(url, options);
-    await handleApiError(res, 'toggle wishlist');
-    const data = await res.json();
-    setWishlist(data.wishlist || {});
-  } catch (err) {
-    console.error("toggleWishlist error:", err);
-  }
-};
-
+      const res = await fetch(url, options);
+      await handleApiError(res, 'toggle wishlist');
+      const data = await res.json();
+      setWishlist(data.wishlist || {});
+    } catch (err) {
+      console.error("toggleWishlist error:", err);
+    }
+  };
 
   const clearWishlist = async () => {
     if (!token || typeof token !== 'string' || token.trim() === '') {
@@ -384,22 +400,6 @@ const ShopContextProvider = ({ children }) => {
       console.error("clearWishlist error:", err);
       setWishlist({}); // Reset anyway
     }
-  };
-
-  // --- Logout Function (clear localStorage fully) ---
-  const logout = () => {
-    setUser(null);
-    setToken(null);
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    localStorage.removeItem("cart");
-    localStorage.removeItem("wishlist");
-    setCart({});
-    setWishlist({});
-    setAllCartProducts([]);
-    setAllWishlistProducts([]);
-    // Optional: Redirect to home or login
-    window.location.href = '/';
   };
 
   return (
