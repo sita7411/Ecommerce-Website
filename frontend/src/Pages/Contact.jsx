@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./CSS/Contact.css";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+const API_BASE = process.env.REACT_APP_API_URL;
+
 
 const Contact = () => {
   const [contactData, setContactData] = useState({
@@ -16,7 +18,7 @@ const Contact = () => {
   // 🧠 Fetch contact data from Node.js API
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/contact")
+  .get(`${API_BASE}/api/contact`)
       .then((res) => {
         setContactData(res.data);
       })
