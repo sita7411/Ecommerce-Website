@@ -20,18 +20,18 @@
       }
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "backend/index.js"
+      "source": "/api/(.*)",
+      "destination": "/backend/index.js"
     },
     {
-      "src": "/admin/(.*)",
-      "dest": "admin/dist/$1"
+      "source": "/admin/(.*)",
+      "destination": "/admin/dist/$1"
     },
     {
-      "src": "/(.*)",
-      "dest": "frontend/build/$1"
+      "source": "/(.*)",
+      "destination": "/frontend/build/$1"
     }
   ],
   "cleanUrls": true
