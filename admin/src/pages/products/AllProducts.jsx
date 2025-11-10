@@ -5,7 +5,7 @@ import { useAdminAuth } from "../../context/AdminAuthContext";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const API_URL = "http://localhost:4000/api/products";
+const API_URL = import.meta.env.VITE_API_URL + "/api/products";
 
 const availableColors = [
   { name: "Red", code: "#ff0000" },
