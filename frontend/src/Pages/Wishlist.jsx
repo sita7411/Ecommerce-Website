@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { ShopContext } from "../context/ShopContext";
 import { useNavigate } from "react-router-dom";
 import "../Pages/CSS/Wishlist.css";
+const API_BASE = process.env.REACT_APP_API_URL;
 
 const Wishlist = () => {
   const { wishlist, addToCart, toggleWishlist, clearWishlist, user } = useContext(ShopContext);
@@ -18,7 +19,7 @@ const Wishlist = () => {
       if (!token) return;
       try {
         setLoading(true);
-        const res = await fetch("http://localhost:4000/api/wishlist", {
+        const res = await fetch(`${API_BASE}/api/wishlist`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -36,7 +37,7 @@ const Wishlist = () => {
           return;
         }
         const requests = ids.map((id) =>
-          fetch(`http://localhost:4000/api/products/${encodeURIComponent(id)}`).then((res) => {
+          fetch(`${API_BASE}/api/products/${encodeURIComponent(id)}`).then((res) => {
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
             return res.json();
           })
