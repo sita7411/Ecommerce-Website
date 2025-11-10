@@ -3,7 +3,7 @@ import axios from "axios";
 import { FiPlus, FiEdit2, FiTrash2, FiSearch, FiX, FiPackage } from "react-icons/fi";
 import { useAdminAuth } from "../../context/AdminAuthContext";
 
-const API_BASE = "http://localhost:4000/api/products"; // ✅ backend URL
+const API_BASE = import.meta.env.VITE_API_URL + "/api/products";
 
 export default function Inventory() {
   const { token } = useAdminAuth(); // ✅ Get JWT token from context
