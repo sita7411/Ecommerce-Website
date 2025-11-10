@@ -2,6 +2,8 @@ import React, { useState, useEffect, useMemo, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import "./CSS/ShippingPage.css";
+const API_BASE = process.env.REACT_APP_API_URL;
+
 
 const countryStateCity = {
   India: {
@@ -84,8 +86,8 @@ const ShippingPage = () => {
   useEffect(() => {
     const checkFirstOrder = async () => {
       try {
-        const response = await fetch("http://localhost:4000/api/orders/my-orders", {
-          headers: { Authorization: `Bearer ${token}` },
+      const response = await fetch(`${API_BASE}/api/orders/my-orders`, {
+      headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
         setIsFirstOrder(Array.isArray(data.orders) && data.orders.length === 0);
