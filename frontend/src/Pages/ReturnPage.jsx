@@ -9,7 +9,6 @@ const ReturnPage = () => {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [returnReason, setReturnReason] = useState("");
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
   // Fetch orders on component mount
   useEffect(() => {
