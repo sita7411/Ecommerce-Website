@@ -4,7 +4,7 @@ import toast, { Toaster } from "react-hot-toast";
 import io from "socket.io-client";
 import { FiCheckCircle, FiTrash2, FiX, FiPackage, FiUser, FiShoppingCart } from "react-icons/fi";
 
-const socket = io("http://localhost:4000"); // replace with your backend URL
+const socket = io(import.meta.env.VITE_API_URL);
 
 const Notifications = () => {
   const navigate = useNavigate(); // ✅ useNavigate hook
