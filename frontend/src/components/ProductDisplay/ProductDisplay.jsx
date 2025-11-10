@@ -20,7 +20,6 @@ const ProductDisplay = () => {
   const [sizeError, setSizeError] = useState(false);
 
   const { cart, addToCart, wishlist, toggleWishlist } = useContext(ShopContext);
-  const navigate = useNavigate();
 
   const isInCart = product && cart[product._id]?.qty > 0;
   const isInWishlist = product && wishlist[product._id] !== undefined;
