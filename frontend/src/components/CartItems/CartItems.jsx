@@ -9,7 +9,6 @@ const CartItems = () => {
     removeFromCart,
     increaseQty,
     decreaseQty,
-    getTotalAmount,
     resetCart,
   } = useContext(ShopContext);
 
