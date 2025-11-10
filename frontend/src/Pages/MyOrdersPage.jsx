@@ -4,6 +4,7 @@ import "../Pages/CSS/MyOrdersPage.css";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { useNavigate } from "react-router-dom";
+const API_BASE = process.env.REACT_APP_API_URL; 
 
 const MyOrdersPage = () => {
   const [orders, setOrders] = useState([]);
@@ -19,7 +20,7 @@ const MyOrdersPage = () => {
           return;
         }
 
-        const res = await fetch("http://localhost:4000/api/orders/my-orders", {
+          const res = await fetch(`${API_BASE}/api/orders/my-orders`, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
