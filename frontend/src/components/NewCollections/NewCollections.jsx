@@ -9,7 +9,7 @@ const NewCollections = () => {
   useEffect(() => {
     const fetchNewProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/products");
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/products`);
         const filtered = res.data.filter((p) => p.isNew);
         setNewProducts(filtered);
       } catch (err) {
