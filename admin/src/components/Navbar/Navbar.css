@@ -1,0 +1,281 @@
+/* ------------------------------
+   🔶 Admin Navbar (Orange Theme)
+------------------------------- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  height: 70px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  z-index: 90;
+}
+
+/* Center Search */
+.navbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #f9f9f9;
+  padding: 8px 12px;
+  border-radius: 10px;
+  width: 280px;
+  transition: all 0.3s ease;
+}
+
+.navbar-search.active {
+  background: #fff4ed;
+  box-shadow: 0 0 0 2px rgba(255, 102, 0, 0.25);
+}
+
+.navbar-search input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 14px;
+  color: #444;
+}
+
+.search-icon {
+  color: #999;
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.search-dropdown {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  z-index: 100;
+}
+.search-dropdown li {
+  padding: 10px 14px;
+  font-size: 14px;
+  color: #555;
+  cursor: pointer;
+}
+.search-dropdown li:hover {
+  background: #fff4ed;
+  color: #ff6600;
+}
+
+/* ---------- Right Section ---------- */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* ---------- Icon Button ---------- */
+.icon-btn {
+  background: #fff4ed;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #ff6600;
+  transition: all 0.3s ease;
+}
+.icon-btn:hover {
+  background: #ff6600;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Badge */
+.badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: #ff6600;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 5px;
+  border-radius: 50%;
+}
+
+/* ---------- Dropdown (Unified) ---------- */
+.dropdown-wrapper {
+  position: relative;
+}
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 45px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 180px;
+  z-index: 100;
+  animation: fadeIn 0.2s ease-in-out;
+  overflow: hidden;
+}
+.dropdown-menu ul {
+  margin: 0;
+  padding: 6px 0;
+  list-style: none;
+}
+.dropdown-menu li {
+  padding: 10px 14px;
+  font-size: 14px;
+  color: #444;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.2s;
+}
+.dropdown-menu li:hover {
+  background: #fff4ed;
+  color: #ff6600;
+  padding-left: 20px;
+}
+
+/* ---------- Notification Dropdown ---------- */
+.notification-menu {
+  width: 320px;
+}
+.notification-menu ul {
+  max-height: 350px;
+  overflow-y: auto;
+}
+.notification-menu li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+  transition: background 0.2s;
+}
+.notification-menu li:hover {
+  background: rgba(255, 102, 0, 0.05);
+}
+.notif-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ff66001a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff6600;
+}
+.notif-text p {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 4px;
+}
+.notif-meta {
+  font-size: 12px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  color: #777;
+}
+.notif-type {
+  padding: 2px 8px;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 12px;
+  background-color: #ff6600;
+}
+.notif-delete {
+  border: none;
+  background: none;
+  color: red;
+  font-size: 16px;
+  margin-left: auto;
+  cursor: pointer;
+}
+.notif-footer {
+  text-align: center;
+  border-top: 1px solid #eee;
+  padding: 6px;
+}
+.notif-footer button {
+  background: none;
+  border: none;
+  color: #ff6600;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* ---------- Profile ---------- */
+.navbar-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fffaf6;
+  padding: 6px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.navbar-profile:hover {
+  background: #fff4ed;
+}
+.profile-img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ff6600;
+}
+.profile-name {
+  font-weight: 600;
+  color: #444;
+  font-size: 14px;
+}
+
+/* ---------- Shared Animations ---------- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #ff6600;
+  border-radius: 3px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .navbar {
+    left: 0;
+    padding: 0 15px;
+  }
+  .navbar-center {
+    display: none;
+  }
+  .profile-name {
+    display: none;
+  }
+}

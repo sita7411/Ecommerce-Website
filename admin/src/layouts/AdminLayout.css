@@ -1,0 +1,60 @@
+/* ============================
+   🧭 Admin Panel Layout
+============================ */
+
+.admin-layout {
+  display: flex;
+  height: 100vh;
+  background: #f8f9fb;
+  overflow: hidden;
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar-wrapper {
+  width: 260px;
+  height: 100vh;
+  background: #fff;
+  border-right: 1px solid #eee;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Main Section ---------- */
+.main-section {
+  flex-grow: 1;
+  margin-left: 260px; /* equal to sidebar width */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #f8f9fa;
+  transition: all 0.3s ease;
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  height: 70px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+
+/* ---------- Main Content ---------- */
+.main-content {
+  flex-grow: 1;
+  padding: 24px;
+  background: #f8f9fb;
+  overflow-y: auto;
+  overflow-x: hidden; /* <-- prevent horizontal scroll */
+    box-sizing: border-box;
+
+}
