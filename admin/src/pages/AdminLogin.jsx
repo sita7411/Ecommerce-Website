@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { AdminAuthContext } from "../context/AdminAuthContext";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const AdminAuth = () => {
   const navigate = useNavigate();
@@ -28,9 +29,9 @@ const AdminAuth = () => {
     setLoading(true);
 
     try {
-      const url = isLogin
-        ? "http://localhost:4000/api/admin/login"
-        : "http://localhost:4000/api/admin/register";
+  const url = isLogin
+  ? `${API_URL}/api/admin/login`
+  : `${API_URL}/api/admin/register`;
 
       const res = await fetch(url, {
         method: "POST",
