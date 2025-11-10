@@ -27,7 +27,7 @@ const SpecialOfferPopup = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:4000/api/offer/claim", {
+const res = await fetch(`${process.env.REACT_APP_API_URL}/api/offer/claim`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
