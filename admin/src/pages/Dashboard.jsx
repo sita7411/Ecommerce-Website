@@ -16,6 +16,7 @@ import {
   Pie,
   Cell,
 } from "recharts";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const COLORS = ["#ff6600", "#ff944d", "#ffbb80", "#ff9966", "#ff7f32"];
 
@@ -27,7 +28,6 @@ const Dashboard = () => {
   const [salesData, setSalesData] = useState([]);
   const [productSales, setProductSales] = useState([]);
   const [returnedOrders, setReturnedOrders] = useState(0);
-  const API_BASE = import.meta.env.VITE_API_URL;
 
   // 🧠 Prevent double API call in StrictMode
   const hasFetched = useRef(false);
@@ -41,9 +41,9 @@ const Dashboard = () => {
         const token = localStorage.getItem("adminToken");
 
         // ✅ Fetch orders
-const ordersRes = await axios.get(`${API_BASE}/orders`, {
-  headers: token ? { Authorization: `Bearer ${token}` } : {},
-});
+        const ordersRes = await axios.get(`${API_URL}/api/orders`, {
+          headers: token ? { Authorization: `Bearer ${token}` } : {},
+        });
         const fetchedOrders = ordersRes.data.orders || [];
         setOrders(fetchedOrders);
         toast.success("Orders data loaded successfully! 🚀");
@@ -51,12 +51,10 @@ const ordersRes = await axios.get(`${API_BASE}/orders`, {
         // ✅ Fetch returned orders (only if admin token exists)
         if (token) {
           try {
-            const returnsRes = await axios.get(
-              "http://localhost:4000/api/returns",
-              {
-                headers: { Authorization: `Bearer ${token}` },
-              }
-            );
+            const returnsRes = await axios.get(`${API_URL}/api/returns`, {
+              headers: token ? { Authorization: `Bearer ${token}` } : {},
+            });
+
             setReturnedOrders(returnsRes.data.returns.length || 0);
           } catch (err) {
             toast.error("Unable to fetch returned orders!");
@@ -129,9 +127,8 @@ const ordersRes = await axios.get(`${API_BASE}/orders`, {
         );
 
         // ✅ Fetch new customers
-        const customersRes = await axios.get(
-          "http://localhost:4000/api/user/new-customers"
-        );
+        const customersRes = await axios.get(`${API_URL}/api/user/new-customers`);
+
         setNewCustomers(customersRes.data.newCustomers || 0);
       } catch (err) {
         console.error("❌ Error fetching data:", err);
@@ -294,15 +291,14 @@ const ordersRes = await axios.get(`${API_BASE}/orders`, {
                     </td>
                     <td className="px-4 py-2">
                       <span
-                        className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                          o.status.toLowerCase() === "delivered"
-                            ? "bg-orange-50 text-orange-700 border border-orange-500"
-                            : o.status.toLowerCase() === "pending"
+                        className={`px-3 py-1 rounded-full text-xs font-semibold ${o.status.toLowerCase() === "delivered"
+                          ? "bg-orange-50 text-orange-700 border border-orange-500"
+                          : o.status.toLowerCase() === "pending"
                             ? "bg-orange-100 text-orange-700"
                             : o.status.toLowerCase() === "processing"
-                            ? "bg-orange-50 text-orange-600"
-                            : "bg-red-100 text-red-700"
-                        }`}
+                              ? "bg-orange-50 text-orange-600"
+                              : "bg-red-100 text-red-700"
+                          }`}
                       >
                         {o.status}
                       </span>
