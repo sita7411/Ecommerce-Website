@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Item from "../Item/Item";
 import "./RelatedProducts.css";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
+
 
 const RelatedProducts = ({ currentProductId }) => {
   const [related, setRelated] = useState([]);
@@ -11,9 +13,8 @@ const RelatedProducts = ({ currentProductId }) => {
 
     const fetchRelated = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:4000/api/products/related/${currentProductId}`
-        );
+const res = await axios.get(`${API_URL}/api/products/related/${currentProductId}`);
+
         const products = res.data;
 
         console.log("API related products:", products);
