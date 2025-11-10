@@ -31,10 +31,9 @@ const CartItems = () => {
         const responses = await Promise.all(
           ids.map((id) =>
             fetch(`${API_BASE}/api/products/${encodeURIComponent(id)}`).then((res) => res.json())
-              res.json()
-            )
           )
         );
+
         setAllProduct(responses);
       } catch (err) {
         console.error("Error fetching products:", err);
@@ -161,14 +160,14 @@ const CartItems = () => {
                   style={{ cursor: "pointer" }}
                 />
 
- <div className="cart-product-info">
-  <h4 onClick={() => goToProduct(productId)}>{product.name}</h4>
-  {product.sizes?.length > 0 && (
-    <p className="cart-size">
-      Size: {cart[productId]?.size || product.sizes[0]}
-    </p>
-  )}
-</div>
+                <div className="cart-product-info">
+                  <h4 onClick={() => goToProduct(productId)}>{product.name}</h4>
+                  {product.sizes?.length > 0 && (
+                    <p className="cart-size">
+                      Size: {cart[productId]?.size || product.sizes[0]}
+                    </p>
+                  )}
+                </div>
 
 
                 <p className="cart-price">
