@@ -8,7 +8,7 @@ import {
 import { FiEdit, FiTrash2, FiEye } from "react-icons/fi";
 import ExcelJS from "exceljs";
 
-const API_URL = import.meta.env.VITE_API_URL + "/users";
+const API_URL = import.meta.env.VITE_API_URL + "/api/users";
 
 const Customers = () => {
   const [customers, setCustomers] = useState([]);
