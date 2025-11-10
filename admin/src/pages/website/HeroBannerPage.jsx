@@ -3,7 +3,7 @@ import axios from "axios";
 import { FiUpload, FiEdit, FiTrash2 } from "react-icons/fi";
 import toast, { Toaster } from "react-hot-toast";
 
-const API_URL = "http://localhost:4000/api/hero-banners";
+const API_URL = import.meta.env.VITE_API_URL + "/api/hero-banners";
 
 const HeroBannerPage = () => {
     const [banners, setBanners] = useState([]);
@@ -93,7 +93,7 @@ const HeroBannerPage = () => {
         setPreview(
             banner.imageUrl.startsWith("http")
                 ? banner.imageUrl
-                : `http://localhost:4000${banner.imageUrl}`
+                : `${import.meta.env.VITE_API_URL}${banner.imageUrl}`
         );
         setSelectedFile(null);
     };
