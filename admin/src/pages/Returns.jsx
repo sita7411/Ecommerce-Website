@@ -4,6 +4,8 @@ import { FiFilter, FiRefreshCw, FiPrinter, FiEye, FiX } from "react-icons/fi";
 import ExcelJS from "exceljs";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 const Returns = () => {
     const [returns, setReturns] = useState([]);
@@ -30,12 +32,7 @@ const Returns = () => {
         const fetchReturns = async () => {
             try {
                 const token = localStorage.getItem("adminToken");
-                const res = await fetch("http://localhost:4000/api/returns", {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: token ? `Bearer ${token}` : "",
-                    },
-                });
+                const res = await fetch(`${API_URL}/api/returns`, { headers: { Authorization: `Bearer ${token}` } });
                 const data = await res.json();
                 if (data.returns) {
                     setReturns(data.returns);
