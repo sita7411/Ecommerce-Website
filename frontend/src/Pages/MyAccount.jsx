@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CSS/MyAccount.css";
 
-const API_BASE = "http://localhost:4000/api/user";
+const API_BASE = process.env.REACT_APP_API_URL + "/api/user";
 
 const MyAccount = () => {
   const navigate = useNavigate();
