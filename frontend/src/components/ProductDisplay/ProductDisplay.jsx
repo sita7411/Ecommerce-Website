@@ -138,16 +138,17 @@ const handleAddToWishlist = () => {
           </div>
 
           <div className="productdisplay-main">
-           
-              src={
-                mainImage.startsWith("http")
-                  ? mainImage
-                  : `${process.env.REACT_APP_API_URL}${mainImage}`
-              }
-              alt={product.name}
-              className="productdisplay-main-img"
-            />
-          </div>
+  <img
+    src={
+      mainImage.startsWith("http")
+        ? mainImage
+        : `${process.env.REACT_APP_API_URL}${mainImage}`
+    }
+    alt={product.name}
+    className="productdisplay-main-img"
+  />
+</div>
+
         </div>
 
         {/* ---------- Right Section ---------- */}
