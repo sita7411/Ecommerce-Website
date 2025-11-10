@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import "../Pages/CSS/Shopcategory.css";
 import Item from "../components/Item/Item";
+const API_BASE = process.env.REACT_APP_API_URL;
 
 const ShopCategory = ({ category }) => {
   const [allProducts, setAllProducts] = useState([]);
@@ -9,7 +10,7 @@ const ShopCategory = ({ category }) => {
 
   // Fetch products
   useEffect(() => {
-    fetch("http://localhost:4000/api/products")
+    fetch(`${API_BASE}/api/products`)
       .then((res) => res.json())
       .then((data) => {
         setAllProducts(data);
@@ -23,7 +24,7 @@ const ShopCategory = ({ category }) => {
 
   // Fetch banner dynamically
   useEffect(() => {
-    fetch(`http://localhost:4000/api/category-banners?category=${category}`)
+    fetch(`${API_BASE}/api/category-banners?category=${category}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.length > 0) setBanner(data[0].imageUrl);
