@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 const AdminContactSettings = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +17,7 @@ const AdminContactSettings = () => {
   // 🧠 Fetch existing contact data from backend
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/contact")
+    .get(`${API_URL}/api/contact`)
       .then((res) => setFormData(res.data))
       .catch((err) => {
         console.error("❌ Error fetching contact data:", err);
@@ -32,7 +34,7 @@ const AdminContactSettings = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put("http://localhost:4000/api/contact", formData)
+axios.put(`${API_URL}/api/contact`, formData)
       .then(() => {
         toast.success("contact Page Updated Successfully!");
       })
