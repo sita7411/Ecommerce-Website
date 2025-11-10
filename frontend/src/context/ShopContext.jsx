@@ -1,5 +1,5 @@
 // ShopContext.js
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useCallback } from "react";
 
 export const ShopContext = createContext(null);
 
@@ -93,46 +93,47 @@ const ShopContextProvider = ({ children }) => {
   };
 
   // --- Fetch Cart from backend if user logs in ---
-  const fetchCart = async () => {
-    if (!token || typeof token !== 'string' || token.trim() === '') {
-      console.warn("No valid token for fetchCart");
-      setCart({});
-      return;
-    }
-    try {
-      const res = await fetch("http://localhost:4000/api/cart", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      await handleApiError(res, 'fetch cart');
-      const data = await res.json();
-      console.log("fetchCart response:", data);
-      setCart(data.cart || {}); // Always object
-    } catch (err) {
-      console.error("Failed to fetch cart:", err);
-      setCart({}); // Reset to empty on failure to avoid stale data
-    }
-  };
+  const fetchCart = useCallback(async () => {
+  if (!token || typeof token !== 'string' || token.trim() === '') {
+    console.warn("No valid token for fetchCart");
+    setCart({});
+    return;
+  }
+  try {
+    const res = await fetch("http://localhost:4000/api/cart", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    await handleApiError(res, 'fetch cart');
+    const data = await res.json();
+    console.log("fetchCart response:", data);
+    setCart(data.cart || {});
+  } catch (err) {
+    console.error("Failed to fetch cart:", err);
+    setCart({});
+  }
+}, [token]);
+
 
   // --- Fetch Wishlist from backend if user logs in ---
-  const fetchWishlist = async () => {
-    if (!token || typeof token !== 'string' || token.trim() === '') {
-      console.warn("No valid token for fetchWishlist");
-      setWishlist({});
-      return;
-    }
-    try {
-      const res = await fetch("http://localhost:4000/api/wishlist", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      await handleApiError(res, 'fetch wishlist');
-      const data = await res.json();
-      console.log("fetchWishlist response:", data);
-      setWishlist(data.wishlist || {}); // Always object
-    } catch (err) {
-      console.error("Failed to fetch wishlist:", err);
-      setWishlist({}); // Reset to empty on failure
-    }
-  };
+  const fetchWishlist = useCallback(async () => {
+  if (!token || typeof token !== 'string' || token.trim() === '') {
+    console.warn("No valid token for fetchWishlist");
+    setWishlist({});
+    return;
+  }
+  try {
+    const res = await fetch("http://localhost:4000/api/wishlist", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    await handleApiError(res, 'fetch wishlist');
+    const data = await res.json();
+    console.log("fetchWishlist response:", data);
+    setWishlist(data.wishlist || {});
+  } catch (err) {
+    console.error("Failed to fetch wishlist:", err);
+    setWishlist({});
+  }
+}, [token]);
 
   // ... (rest of the file remains the same)
 
