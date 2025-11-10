@@ -3,14 +3,17 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import io from "socket.io-client";
 
 const NotificationsContext = createContext();
-const socket = io("http://localhost:4000");
+const API_URL = import.meta.env.VITE_API_URL;
+
+// Socket connection
+const socket = io(API_URL);
 
 export const NotificationsProvider = ({ children }) => {
   const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
     // Fetch all notifications initially
-    fetch("http://localhost:4000/api/notifications", {
+    fetch(`${API_URL}/api/notifications`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     })
       .then((res) => res.json())
@@ -25,15 +28,13 @@ export const NotificationsProvider = ({ children }) => {
     return () => socket.off("newNotification");
   }, []);
 
-  // ✅ Mark all read (frontend only)
   const markAllRead = () => {
     setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
   };
 
-  // ✅ Delete single notification (backend + frontend)
   const deleteOne = async (id) => {
     try {
-      await fetch(`http://localhost:4000/api/notifications/${id}`, {
+      await fetch(`${API_URL}/api/notifications/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
@@ -43,10 +44,9 @@ export const NotificationsProvider = ({ children }) => {
     }
   };
 
-  // ✅ Delete all notifications (backend + frontend)
   const deleteAll = async () => {
     try {
-      await fetch("http://localhost:4000/api/notifications", {
+      await fetch(`${API_URL}/api/notifications`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
