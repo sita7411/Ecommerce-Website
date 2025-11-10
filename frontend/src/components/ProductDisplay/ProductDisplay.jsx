@@ -37,7 +37,10 @@ const ProductDisplay = () => {
           return;
         }
 
-        const res = await fetch(`http://localhost:4000/api/products/${cleanProductId}`);
+
+        const res = await fetch(
+          `${process.env.REACT_APP_API_URL}/api/products/${cleanProductId}`
+        );
         if (!res.ok) {
           setError("Product not found.");
           return;
@@ -126,7 +129,7 @@ const handleAddToWishlist = () => {
             {images.map((img, index) => (
               <img
                 key={index}
-                src={img.startsWith("http") ? img : `http://localhost:4000${img}`}
+                src={img.startsWith("http") ? img : `${process.env.REACT_APP_API_URL}${img}`}
                 alt={`${product.name} ${index + 1}`}
                 className={`thumbnail ${mainImage === img ? "active" : ""}`}
                 onClick={() => setMainImage(img)}
@@ -135,11 +138,11 @@ const handleAddToWishlist = () => {
           </div>
 
           <div className="productdisplay-main">
-            <img
+           
               src={
                 mainImage.startsWith("http")
                   ? mainImage
-                  : `http://localhost:4000${mainImage}`
+                  : `${process.env.REACT_APP_API_URL}${mainImage}`
               }
               alt={product.name}
               className="productdisplay-main-img"
