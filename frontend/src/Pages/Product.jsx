@@ -4,6 +4,7 @@ import ProductDisplay from "../components/ProductDisplay/ProductDisplay";
 import Breadcrums from "../components/Breadcrums/Breadcrums";
 import DescriptionBox from "../components/DescriptionBox/DescriptionBox";
 import RelatedProducts from "../components/RelatedProducts/RelatedProducts";
+const API_BASE = process.env.REACT_APP_API_URL;
 
 const Product = () => {
   const { productId } = useParams();
@@ -15,7 +16,7 @@ const Product = () => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`http://localhost:4000/api/products/${productId}`);
+        const res = await fetch(`${API_BASE}/api/products/${productId}`);
         if (!res.ok) throw new Error("Product not found");
         const data = await res.json();
         setProduct(data);
