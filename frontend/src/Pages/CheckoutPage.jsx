@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import { FaCreditCard, FaGooglePay, FaMoneyBillWave } from "react-icons/fa";
 import "../Pages/CSS/CheckoutPage.css";
+const API_BASE = process.env.REACT_APP_API_URL;
+
 
 // Country → State → City mapping
 const countryStateCity = {
@@ -73,7 +75,7 @@ const CheckoutPage = () => {
   useEffect(() => {
     const checkFirstOrder = async () => {
       try {
-        const response = await fetch("http://localhost:4000/api/orders/my-orders", {
+const response = await fetch(`${API_BASE}/api/orders/my-orders`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
@@ -226,7 +228,7 @@ const CheckoutPage = () => {
         })),
       };
 
-      const response = await fetch("http://localhost:4000/api/orders", {
+const response = await fetch(`${API_BASE}/api/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
