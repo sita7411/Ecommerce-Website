@@ -49,4 +49,11 @@
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.13"
   }
+  "scripts": {
+  "start": "react-scripts start",
+  "build": "SKIP_PREFLIGHT_CHECK=true react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+}
+
 }
