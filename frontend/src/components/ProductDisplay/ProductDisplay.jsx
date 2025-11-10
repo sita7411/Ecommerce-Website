@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import "./ProductDisplay.css";
 import { FaFacebook, FaPinterest, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { ShopContext } from "../../context/ShopContext";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const ProductDisplay = () => {
   const { productId } = useParams();
