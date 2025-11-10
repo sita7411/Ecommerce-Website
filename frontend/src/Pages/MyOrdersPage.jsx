@@ -50,7 +50,6 @@ const downloadInvoice = async (order) => {
     items = [],
     paymentMethod,
     createdAt,
-        totalAmount = 0,
     shippingPrice = 0,
     taxPrice = 0,
     discount = 0,
