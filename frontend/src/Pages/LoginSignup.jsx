@@ -1,12 +1,11 @@
-
-// LoginSignup.jsx
+// LoginSignup.js
 import React, { useState, useEffect, useContext } from "react";
 import { FaUser, FaEnvelope, FaLock, FaPhone, FaVenusMars } from "react-icons/fa";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import "./CSS/LoginSignup.css";
-
 const API_BASE = process.env.REACT_APP_API_URL;
+
 
 const LoginSignup = () => {
   const navigate = useNavigate();
@@ -52,7 +51,7 @@ const LoginSignup = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle login/signup submit
+  // ---------------- PASSWORD LOGIN/SIGNUP ----------------
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
@@ -86,7 +85,6 @@ const LoginSignup = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-
       const data = await res.json();
 
       if (res.ok) {
@@ -114,6 +112,8 @@ const LoginSignup = () => {
       setLoading(false);
     }
   };
+
+
 
   return (
     <div className="loginsignup">
@@ -170,11 +170,7 @@ const LoginSignup = () => {
               </div>
               <div className="input-box">
                 <FaVenusMars className="icon" />
-                <select
-                  name="gender"
-                  value={formData.gender}
-                  onChange={handleChange}
-                >
+                <select name="gender" value={formData.gender} onChange={handleChange}>
                   <option value="Female">Female</option>
                   <option value="Male">Male</option>
                   <option value="Other">Other</option>
@@ -208,16 +204,12 @@ const LoginSignup = () => {
 
           <div className="button-row">
             <button type="submit" className="primary-btn" disabled={loading}>
-              {loading
-                ? isLogin
-                  ? "Logging in..."
-                  : "Signing up..."
-                : isLogin
-                ? "Login"
-                : "Sign Up"}
+              {loading ? (isLogin ? "Logging in..." : "Signing up...") : isLogin ? "Login" : "Sign Up"}
             </button>
           </div>
         </form>
+
+       
 
         <p className="loginsignup-login">
           {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
@@ -237,3 +229,4 @@ const LoginSignup = () => {
 };
 
 export default LoginSignup;
+ 
