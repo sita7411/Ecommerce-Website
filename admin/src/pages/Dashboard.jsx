@@ -27,6 +27,7 @@ const Dashboard = () => {
   const [salesData, setSalesData] = useState([]);
   const [productSales, setProductSales] = useState([]);
   const [returnedOrders, setReturnedOrders] = useState(0);
+  const API_BASE = import.meta.env.VITE_API_URL;
 
   // 🧠 Prevent double API call in StrictMode
   const hasFetched = useRef(false);
@@ -40,9 +41,9 @@ const Dashboard = () => {
         const token = localStorage.getItem("adminToken");
 
         // ✅ Fetch orders
-        const ordersRes = await axios.get("http://localhost:4000/api/orders", {
-          headers: token ? { Authorization: `Bearer ${token}` } : {},
-        });
+const ordersRes = await axios.get(`${API_BASE}/orders`, {
+  headers: token ? { Authorization: `Bearer ${token}` } : {},
+});
         const fetchedOrders = ordersRes.data.orders || [];
         setOrders(fetchedOrders);
         toast.success("Orders data loaded successfully! 🚀");
