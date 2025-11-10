@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../Pages/CSS/ReturnPage.css";
 import toast, { Toaster } from "react-hot-toast";
+const API_BASE = process.env.REACT_APP_API_URL;
+
 
 const ReturnPage = () => {
   const [orders, setOrders] = useState([]);
@@ -16,7 +18,7 @@ const ReturnPage = () => {
         const token = localStorage.getItem("token");
         if (!token) return;
 
-        const res = await fetch("http://localhost:4000/api/orders/my-orders", {
+const res = await fetch(`${API_BASE}/api/orders/my-orders`, {
           headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
         });
 
@@ -51,7 +53,7 @@ const ReturnPage = () => {
 
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:4000/api/returns", {
+const res = await fetch(`${API_BASE}/api/returns`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
         body: JSON.stringify({ orderId: selectedOrder._id, reason: returnReason }),
