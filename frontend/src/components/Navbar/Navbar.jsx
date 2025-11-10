@@ -27,7 +27,7 @@ const Navbar = () => {
   useEffect(() => {
     const fetchLogo = async () => {
       try {
-        const res = await fetch("http://localhost:4000/api/logo");
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/logo`);
         const data = await res.json();
         if (data.success && data.logo) setLogoUrl(data.logo.url);
       } catch (err) {
