@@ -4,6 +4,7 @@ import { FaUser, FaEnvelope, FaLock, FaPhone, FaVenusMars } from "react-icons/fa
 import { useNavigate, useLocation } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import "./CSS/LoginSignup.css";
+const API_BASE = process.env.REACT_APP_API_URL;
 
 const LoginSignup = () => {
   const navigate = useNavigate();
@@ -56,8 +57,8 @@ const LoginSignup = () => {
     setLoading(true);
 
     const url = isLogin
-      ? "http://localhost:4000/api/auth/login"
-      : "http://localhost:4000/api/auth/register";
+      ? `${API_BASE}/api/auth/login"
+      : `${API_BASE}/api/auth/register";
 
     const payload = isLogin
       ? { email: formData.email.trim(), password: formData.password.trim() }
