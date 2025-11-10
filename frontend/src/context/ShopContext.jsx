@@ -2,6 +2,7 @@
 import React, { createContext, useState, useEffect, useCallback } from "react";
 
 export const ShopContext = createContext(null);
+const API_URL = process.env.REACT_APP_API_URL;
 
 const ShopContextProvider = ({ children }) => {
   const [cart, setCart] = useState({});
@@ -101,8 +102,8 @@ const ShopContextProvider = ({ children }) => {
       return;
     }
     try {
-      const res = await fetch("http://localhost:4000/api/cart", {
-        headers: { Authorization: `Bearer ${token}` },
+const res = await fetch(`${API_URL}/api/cart`, {
+  headers: { Authorization: `Bearer ${token}` },
       });
       await handleApiError(res, 'fetch cart');
       const data = await res.json();
