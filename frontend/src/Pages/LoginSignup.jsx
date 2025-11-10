@@ -56,9 +56,10 @@ const LoginSignup = () => {
     setMessage("");
     setLoading(true);
 
-    const url = isLogin
-      ? `${API_BASE}/api/auth/login"
-      : `${API_BASE}/api/auth/register";
+const url = isLogin
+  ? `${API_BASE}/api/auth/login`
+  : `${API_BASE}/api/auth/register`;
+
 
     const payload = isLogin
       ? { email: formData.email.trim(), password: formData.password.trim() }
