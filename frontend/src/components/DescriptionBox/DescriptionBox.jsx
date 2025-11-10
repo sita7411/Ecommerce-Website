@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import "./DescriptionBox.css";
 
 const DescriptionBox = ({ product }) => {
   const [activeTab, setActiveTab] = useState("description");
-  const [reviews, setReviews] = useState([]);
+  const [reviews] = useState([]); // only reading reviews
 
-  
   // Render stars
   const renderStars = (rating) => "★".repeat(rating) + "☆".repeat(5 - rating);
 
