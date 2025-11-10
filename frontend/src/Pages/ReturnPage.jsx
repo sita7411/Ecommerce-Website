@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../Pages/CSS/ReturnPage.css";
-import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
 const ReturnPage = () => {
