@@ -3,6 +3,8 @@ import { FaCheckCircle, FaFileDownload } from "react-icons/fa";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import "../Pages/CSS/OrderCompleted.css";
+const API_BASE = process.env.REACT_APP_API_URL; // at top of file
+
 
 const OrderCompleted = () => {
   const [order, setOrder] = useState(null);
@@ -15,12 +17,12 @@ const OrderCompleted = () => {
         const token = localStorage.getItem("token");
         if (!token) throw new Error("User not authenticated");
 
-        const response = await fetch("http://localhost:4000/api/orders/my-orders", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        });
+  const response = await fetch(`${API_BASE}/api/orders/my-orders`, {
+  headers: {
+    Authorization: `Bearer ${token}`,
+    "Content-Type": "application/json",
+  },
+});
 
         if (!response.ok) throw new Error("Failed to fetch order");
         const data = await response.json();
