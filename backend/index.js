@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 const helmet = require("helmet");
 const http = require("http");
 const { Server } = require("socket.io");
+const PORT = process.env.PORT || 4000;
+
 
 // -------------------- ROUTE IMPORTS --------------------
 const authRoutes = require("./routes/auth");
