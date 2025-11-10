@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { ShopContext } from "../../context/ShopContext";
 import { useNavigate } from "react-router-dom";
 import "./CartItems.css";
+const API_BASE = process.env.REACT_APP_API_URL;
 
 const CartItems = () => {
   const {
@@ -29,7 +30,7 @@ const CartItems = () => {
       try {
         const responses = await Promise.all(
           ids.map((id) =>
-            fetch(`http://localhost:4000/api/products/${id}`).then((res) =>
+            fetch(`${API_BASE}/api/products/${encodeURIComponent(id)}`).then((res) => res.json())
               res.json()
             )
           )
@@ -52,7 +53,7 @@ const CartItems = () => {
         return;
       }
       try {
-        const response = await fetch("http://localhost:4000/api/orders/my-orders", {
+        const response = await fetch(`${API_BASE}/api/orders/my-orders`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
