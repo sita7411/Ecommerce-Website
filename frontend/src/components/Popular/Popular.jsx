@@ -10,7 +10,7 @@ const Popular = () => {
   useEffect(() => {
     const fetchPopular = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/products");
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/products`);
         const popular = res.data.filter((p) => p.isPopular);
         setProducts(popular);
       } catch (err) {
