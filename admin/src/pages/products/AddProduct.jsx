@@ -4,6 +4,8 @@ import "../Css/products.css";
 import { useAdminAuth } from "../../context/AdminAuthContext"; // for token
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 const AddProduct = () => {
   const [formData, setFormData] = useState({
@@ -149,7 +151,7 @@ const AddProduct = () => {
       const imageFormData = new FormData();
       files.forEach((file) => imageFormData.append("images", file));
 
-      const uploadRes = await fetch("http://localhost:4000/api/upload", {
+      const uploadRes = await fetch(`${API_URL}/api/upload`, {
         method: "POST",
         body: imageFormData,
       });
@@ -176,7 +178,7 @@ const AddProduct = () => {
 
       const token = localStorage.getItem("adminToken");
 
-      const res = await fetch("http://localhost:4000/api/products", {
+      const res = await fetch(`${API_URL}/api/products`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
