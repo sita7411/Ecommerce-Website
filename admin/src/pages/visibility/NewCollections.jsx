@@ -7,6 +7,7 @@ import { FiEdit, FiTrash2 } from "react-icons/fi";
 import "../Css/visiblity.css";
 import { useAdminAuth } from "../../context/AdminAuthContext"; // for token
 import "../Css/dashboard.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const NewCollections = () => {
   const [products, setProducts] = useState([]);
@@ -18,7 +19,7 @@ const NewCollections = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/products");
+const res = await axios.get(`${API_URL}/api/products`);
         setProducts(res.data);
       } catch (err) {
         console.error("❌ Error fetching products:", err);
@@ -39,7 +40,7 @@ const NewCollections = () => {
 
     try {
       const res = await axios.put(
-        `http://localhost:4000/api/products/${id}/new`,
+      `${API_URL}/api/products/${id}/new`,
         { isNew: !currentStatus },
         {
           headers: {
@@ -66,8 +67,8 @@ const NewCollections = () => {
     }
 
     try {
-      await axios.delete(`http://localhost:4000/api/products/${deleteModal.id}`, {
-        headers: { Authorization: `Bearer ${token}` },
+await axios.delete(`${API_URL}/api/products/${deleteModal.id}`, {
+  headers: { Authorization: `Bearer ${token}` },
       });
       setProducts((prev) => prev.filter((p) => p._id !== deleteModal.id));
       setDeleteModal({ open: false, id: null });
