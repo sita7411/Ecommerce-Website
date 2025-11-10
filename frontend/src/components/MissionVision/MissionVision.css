@@ -1,0 +1,170 @@
+.mv-cards-section {
+  width: 100%;
+  padding: 120px 20px;
+  background: #fff8f2;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+.mv-cards-container {
+  display: flex;
+  gap: 60px;
+  max-width: 1200px;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Card styles */
+/* Card styles */
+.mv-card {
+  position: relative;
+  background: #fff;
+  border-radius: 30px;
+  padding: 50px 30px; /* slightly reduced padding */
+  width: 300px;       /* smaller width */
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  cursor: default;
+  overflow: hidden;
+}
+
+/* Icon Circle remains the same, can scale slightly if needed */
+
+
+
+/* Diagonal rotated cards */
+.mv-card-left {
+  transform: rotate(-2deg);
+}
+
+.mv-card-right {
+  transform: rotate(2deg);
+}
+
+/* Hover effect */
+.mv-card:hover {
+  transform: rotate(0deg) translateY(-25px);
+  box-shadow: 0 35px 90px rgba(0,0,0,0.2);
+}
+
+/* Icon Circle */
+.mv-icon-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff6600, #ff9933);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 38px;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mv-card:hover .mv-icon-circle {
+  transform: scale(1.15) rotate(5deg);
+  box-shadow: 0 15px 45px rgba(0,0,0,0.18);
+}
+
+/* Headings */
+.mv-card h3 {
+  font-size: 32px;
+  color: #ff6600;
+  margin-bottom: 18px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+/* Paragraph */
+.mv-card p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #555;
+}
+
+/* Floating abstract background shapes */
+.mv-cards-section::before,
+.mv-cards-section::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.mv-cards-section::before {
+  width: 450px;
+  height: 450px;
+  background: rgba(255,102,0,0.08);
+  top: -120px;
+  left: -100px;
+}
+
+.mv-cards-section::after {
+  width: 500px;
+  height: 500px;
+  background: rgba(255,102,0,0.05);
+  bottom: -150px;
+  right: -150px;
+}
+
+/* Subtle floating animation for background circles */
+.mv-cards-section::before {
+  animation: float 6s ease-in-out infinite alternate;
+}
+
+.mv-cards-section::after {
+  animation: float 8s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) translateX(0); }
+  100% { transform: translateY(20px) translateX(20px); }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .mv-cards-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+  }
+  .mv-card-left,
+  .mv-card-right {
+    transform: rotate(0deg);
+  }
+  .mv-card {
+    width: 90%;
+    padding: 50px 25px;
+    text-align: center;
+    align-items: center;
+  }
+  .mv-icon-circle {
+    margin: 0 auto 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mv-card h3 {
+    font-size: 28px;
+  }
+  .mv-card p {
+    font-size: 15px;
+  }
+  .mv-icon-circle {
+    width: 75px;
+    height: 75px;
+    font-size: 32px;
+  }
+}

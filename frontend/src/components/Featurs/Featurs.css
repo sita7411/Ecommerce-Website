@@ -1,0 +1,124 @@
+.features-section {
+  padding: 80px 20px;
+  text-align: center;
+  background-color: #fff;
+  margin-bottom: -60px;
+}
+
+.features-wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.feature-item {
+  flex: 1 1 220px;
+  display: flex;
+  align-items: flex-start;
+  margin: 20px;
+  transition: transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(30px);
+  margin-top: -60px;
+}
+
+.feature-item.fade-up {
+  animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.feature-item:hover {
+  transform: translateY(-5px);
+}
+
+.feature-icon {
+  flex-shrink: 0;
+  width: 70px;
+  height: 70px;
+  margin-right: 15px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Icon hover: scale + glow pulse */
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 10px 3px rgba(255, 102, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px 6px rgba(255, 102, 0, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 10px 3px rgba(255, 102, 0, 0.4);
+  }
+}
+
+.feature-item:hover .feature-icon {
+  background: #f9ede7;
+  transform: scale(1.1);
+  animation: glowPulse 1.2s infinite alternate;
+}
+
+.feature-icon img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+/* Title hover: color change */
+.feature-text h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #333;
+  text-align: left;
+  transition: color 0.3s ease; /* smooth color transition */
+}
+
+.feature-item:hover .feature-text h3 {
+  color: #ff6600;
+}
+
+.feature-text p {
+  text-align: left;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.features-hr {
+  background-color: #ff6600;
+  height: 1px;
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .features-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feature-item {
+    flex-direction: row;
+    max-width: 400px;
+  }
+}

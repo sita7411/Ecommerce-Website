@@ -1,0 +1,247 @@
+/* Main layout */
+.loginsignup {
+  display: flex;
+  align-items: center;   /* ✅ vertical center */
+  justify-content: center;
+  gap: 60px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 50px 20px;
+  min-height: 100vh;     /* ensure full height center */
+}
+
+/* Left branding */
+.loginsignup-left {
+  flex: 1;
+  max-width: 480px;
+  text-align: center;
+}
+.loginsignup-left .brand-image {
+  width: 100%;
+  max-width: 496px;
+  margin: 0 auto 25px;
+  display: block;
+}
+.loginsignup-left h2 {
+  font-size: 34px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 15px;
+}
+.loginsignup-left h2 span {
+  color: #ff6600;
+}
+.loginsignup-left p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Right form card */
+.loginsignup-container {
+  flex: 1;
+  max-width: 558px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px 35px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
+}
+.loginsignup-container h1 {
+  font-size: 26px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 8px;
+  color: #222;
+}
+.loginsignup-container .subtitle {
+  font-size: 14px;
+  text-align: center;
+  color: #777;
+  margin-bottom: 25px;
+}
+
+/* Form fields */
+.loginsignup-fields {
+  display: flex;
+  flex-direction: column;
+}
+.input-box {
+  position: relative;
+  margin-bottom: 18px;
+}
+.input-box .icon {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 16px;
+}
+.input-box input {
+  width: 89%;
+  height: 48px;
+  padding: 0 14px 0 44px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+.input-box input:focus {
+  border-color: #ff6600;
+  box-shadow: 0 0 6px rgba(255, 102, 0, 0.35);
+  outline: none;
+}
+
+.input-box {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+/* Icon inside input/select box */
+.input-box .icon {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 16px;
+  pointer-events: none; /* ensures icon doesn’t block select click */
+}
+
+/* Select box styling like input */
+.input-box select {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px 0 44px; /* 44px left padding for icon */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #555;
+  appearance: none; /* remove default arrow */
+  background: url('data:image/svg+xml;utf8,<svg fill="%23888" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 12px center;
+  background-size: 16px;
+}
+
+/* Focus effect */
+.input-box select:focus {
+  border-color: #ff6600;
+  box-shadow: 0 0 6px rgba(255, 102, 0, 0.35);
+  outline: none;
+}
+
+
+
+/* ✅ Button row */
+.button-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+.button-row .primary-btn,
+.button-row .guest-btn {
+  flex: 1; /* equal width */
+}
+
+/* Buttons */
+.primary-btn {
+  background: linear-gradient(135deg, #ff6600, #ff914d);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+.primary-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #e65a00, #ff7b29);
+}
+
+.guest-btn {
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  color: #333;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+.guest-btn:hover {
+  background: #f0f0f0;
+  transform: translateY(-1px);
+}
+
+/* Social login */
+.social-login {
+  text-align: center;
+  margin: 25px 0 18px;
+}
+.social-login p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 12px;
+}
+.social-login .social-icons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+.social-login button {
+  flex: 1;
+  max-width: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+
+/* Login redirect */
+.loginsignup-login {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 12px;
+  color: #555;
+}
+.loginsignup-login span {
+  color: #ff6600;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.loginsignup-login span:hover {
+  color: #e65a00;
+}
+
+/* Terms agreement */
+.loginsignup-agree {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  margin-top: 18px;
+  color: #666;
+}
+.loginsignup-agree input {
+  margin-top: 2px;
+}
+.loginsignup-agree strong {
+  color: #ff6600;
+  cursor: pointer;
+}
+.loginsignup-agree strong:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,208 @@
+  /* ======================
+    MyOrders Wrapper
+    ====================== */
+  .myorders-wrapper {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px 60px;
+    font-family: "Inter", sans-serif;
+    color: #333;
+    border-radius: 12px;
+  }
+
+  /* ======================
+    MyOrders Banner 
+    ====================== */
+  .myorders-banner {
+    position: relative;
+    text-align: center;
+    margin-bottom: 60px;
+    padding: 90px 20px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #ff9d6c 0%, #ff6a00 50%, #ff4b1f 100%);
+    color: #fff;
+    overflow: hidden;
+    box-shadow: 0 6px 25px rgba(255, 106, 0, 0.25);
+    transition: all 0.3s ease;
+  }
+  .myorders-banner:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Decorative shapes */
+  .myorders-banner::before,
+  .myorders-banner::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    z-index: 0;
+  }
+  .myorders-banner::before {
+    width: 220px;
+    height: 220px;
+    top: -60px;
+    left: -80px;
+  }
+  .myorders-banner::after {
+    width: 300px;
+    height: 300px;
+    bottom: -80px;
+    right: -100px;
+  }
+
+  /* Title */
+  .myorders-banner h1 {
+    font-size: 48px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Subtitle / breadcrumb */
+  .myorders-banner p {
+    font-size: 16px;
+    position: relative;
+    z-index: 1;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  .myorders-banner a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+  }
+  .myorders-banner a:hover {
+    color: #562901;
+    border-bottom: 1px solid #562901;
+  }
+
+  /* ======================
+    Order Card
+    ====================== */
+  .order-card {
+    border-radius: 14px;
+    padding: 28px 26px;
+    margin-bottom: 40px;
+    transition: all 0.3s ease;
+    border: 1px solid #f1f1f1;
+  }
+  .order-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Order Header */
+  .order-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 22px;
+    color: #444;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 14px;
+  }
+  .order-header span {
+    background: #fafafa;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+  }
+
+  /* ======================
+    Order Items
+    ====================== */
+  .order-items {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 22px;
+  }
+  .order-item {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    padding: 16px;
+    border-radius: 12px;
+    background: #fdfdfd;
+    border: 1px solid #f0f0f0;
+    transition: all 0.2s ease;
+  }
+  .order-item:hover {
+    background: #fcfcfc;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  .order-item img {
+    width: 92px;
+    height: 109px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .item-details {
+    flex: 1;
+  }
+  .item-details p {
+    margin: 3px 0;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.4;
+  }
+  .item-details strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 15px;
+    color: #222;
+  }
+
+  /* ======================
+    Download Button
+    ====================== */
+  .download-btn {
+    display: inline-block;
+    padding: 12px 26px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, #ff9d6c 0%, #ff6a00 100%);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 106, 0, 0.3);
+  }
+  .download-btn:hover {
+    background: linear-gradient(135deg, #ff6a00 0%, #ff4b1f 100%);
+    box-shadow: 0 6px 16px rgba(255, 106, 0, 0.35);
+    transform: translateY(-2px);
+  }
+
+  /* Return Button */
+  .return-btn {
+    display: inline-block;
+    padding: 12px 26px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, #ff9d6c 0%, #ff6a00 100%);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: 15px;
+  }
+  .return-btn:hover {
+    background: linear-gradient(135deg, #ff6a00 0%, #ff4b1f 100%);
+    box-shadow: 0 6px 16px rgba(255, 106, 0, 0.35);
+    transform: translateY(-2px);
+  }
+
+  

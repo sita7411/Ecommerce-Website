@@ -1,0 +1,142 @@
+.popular {
+  padding: 60px 20px;
+  text-align: center;
+  max-width: 1200px;
+  margin: auto;
+  margin-top: -40PX;
+  background-color: #fff;
+}
+
+.popular h1 {
+  font-size: 34px;
+  font-weight: 800;
+  margin-bottom: 15px;
+  color: #222;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.popular hr {
+  width: 160px;
+  height: 5px;
+  margin: 0 auto 40px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #ff914d,
+    #ff6600,
+    #e65100,
+    transparent
+  );
+  position: relative;
+}
+
+.popular hr::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -6px;
+  width: 12px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ff6600;
+  box-shadow: 0 0 12px rgba(255, 102, 0, 0.7);
+}
+
+
+/* Grid Layout */
+.popular-item {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+.item {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  transition: all 0.35s ease;
+  cursor: pointer;
+  text-align: center;
+}
+
+.item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.item img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.item:hover img {
+  transform: scale(1.08);
+}
+
+.item p {
+  margin: 14px 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.item:hover p {
+  color: #ff6600;
+}
+
+/* Price Styling */
+.item-prices {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 15px;
+}
+
+.item-price-old {
+  font-size: 15px;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.item-price-new {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #ff914d, #ff6600);
+  padding: 6px 14px;
+  border-radius: 30px;
+  box-shadow: 0 3px 8px rgba(255, 102, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.item:hover .item-price-new {
+  background: linear-gradient(135deg, #ff6600, #e65100);
+  box-shadow: 0 5px 14px rgba(255, 102, 0, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .popular-item {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .popular-item {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .popular-item {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

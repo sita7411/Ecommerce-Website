@@ -1,0 +1,310 @@
+/* ======================
+   Wishlist Wrapper
+   ====================== */
+.wishlist-wrapper {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px 40px 20px;
+  font-family: "Inter", sans-serif;
+  color: #333;
+  border-radius: 12px;
+}
+
+/* ======================
+   Wishlist Banner 
+   ====================== */
+.wishlist-banner {
+  position: relative;
+  text-align: center;
+  margin-bottom: 60px;
+  padding: 90px 20px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ff9d6c 0%, #ff6a00 50%, #ff4b1f 100%);
+  color: #fff;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(255, 106, 0, 0.3);
+}
+
+/* Decorative shapes */
+.wishlist-banner::before,
+.wishlist-banner::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  z-index: 0;
+}
+.wishlist-banner::before {
+  width: 220px;
+  height: 220px;
+  top: -60px;
+  left: -80px;
+}
+.wishlist-banner::after {
+  width: 300px;
+  height: 300px;
+  bottom: -80px;
+  right: -100px;
+}
+
+/* Title */
+.wishlist-banner h1 {
+  font-size: 46px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* Breadcrumb */
+.wishlist-banner p {
+  font-size: 17px;
+  position: relative;
+  z-index: 1;
+  color: #f9f9f9;
+}
+.wishlist-banner a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+.wishlist-banner a:hover {
+  color: #562901;
+  border-bottom: 1px solid #562901;
+}
+.wishlist-banner span {
+  opacity: 0.85;
+}
+
+
+/* ======================
+   Wishlist Table
+   ====================== */
+.wishlist-table {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ======================
+   Wishlist Header & Rows
+   ====================== */
+.wishlist-header,
+.wishlist-row {
+  display: grid;
+  grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 1fr; /* Remove | Product | Price | Date | Stock | Action */
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 14px 10px;
+  border-bottom: 1px solid #eee;
+  font-weight: 600;
+  transition: background 0.25s ease;
+}
+
+.wishlist-header {
+  background: linear-gradient(90deg, #ff6600, #f97b58);
+  color: #fff;
+  border-radius: 8px;
+}
+
+.wishlist-row:hover {
+  background: #f9f9f9;
+}
+
+/* ======================
+   Product Image & Info
+   ====================== */
+.wishlist-product {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+}
+
+.wishlist-product img {
+  width: 70px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+}
+
+.wishlist-product div p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.wishlist-product div small {
+  margin-top: 4px;
+  display: block;
+  font-size: 13px;
+  color: #777;
+}
+
+/* ======================
+   Remove Button
+   ====================== */
+.remove-wishlist-btn {
+  cursor: pointer;
+  font-size: 34px;
+  color: #ff6600;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.remove-wishlist-btn:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+
+/* ======================
+   Price & Stock
+   ====================== */
+.wishlist-row span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.cart-item-price,
+.stock-status {
+  color: #ff6600;
+}
+.stock-status.out-of-stock {
+  color: red;
+  font-weight: bold;
+}
+
+.stock-status.in-stock {
+  color: green;
+  font-weight: bold;
+}
+
+/* ======================
+   Action Buttons (Row)
+   ====================== */
+.wishlist-row button {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.wishlist-row button.addcart-btn {
+  background: linear-gradient(135deg, #ff6600, #ff944d);
+  color: #fff;
+}
+
+.wishlist-row button.addcart-btn:hover {
+  background: linear-gradient(135deg, #ff6600, #e65100);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 102, 0, 0.35);
+}
+
+/* ======================
+   Wishlist Footer
+   ====================== */
+.wishlist-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+  padding-top: 15px;
+}
+
+.wishlist-footer .wishlist-link {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.wishlist-footer .wishlist-link input {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  min-width: 220px;
+}
+
+.wishlist-footer .wishlist-link button {
+  background: #ff6600;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.wishlist-footer .wishlist-link button:hover {
+  background: #e65100;
+  transform: translateY(-2px);
+}
+
+/* ======================
+   Footer Buttons (Right Side)
+   ====================== */
+.wishlist-footer .footer-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.wishlist-footer .footer-buttons button {
+  padding: 12px 20px;
+  margin: 0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: #ddd; /* Same for all */
+  color: #333;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.wishlist-footer .footer-buttons button:hover {
+  background: #ccc;
+  transform: scale(1.03);
+}
+
+/* ======================
+   Responsive Footer Buttons
+   ====================== */
+@media (max-width: 425px) {
+  .wishlist-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .wishlist-footer .wishlist-link {
+    width: 100%;
+  }
+
+  .wishlist-footer .wishlist-link input {
+    flex: 1;
+    width: 100%;
+  }
+
+  .wishlist-footer .footer-buttons {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .wishlist-footer .footer-buttons button {
+    flex: 1;
+    text-align: center;
+  }
+}

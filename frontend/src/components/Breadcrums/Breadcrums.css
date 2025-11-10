@@ -1,0 +1,32 @@
+.breadcrum {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  color: #5e5e5e;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin: 60px 170px ;
+}
+
+.breadcrum a {
+  color: #ff6600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.breadcrum a:hover {
+  text-decoration: underline;
+}
+
+.breadcrum img {
+  width: 12px;
+  height: 12px;
+  pointer-events: none; /* arrows won't block clicks */
+}
+
+.breadcrum span {
+  color: #555;
+}

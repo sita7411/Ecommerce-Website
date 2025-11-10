@@ -1,0 +1,208 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background: #ffffff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-family: "Poppins", sans-serif;
+  transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+}
+
+.navbar.scrolled {
+  background: #fff;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+  padding: 15px 50px;
+}
+
+/* Logo - keep same dimensions */
+.nav-logo img {
+  width: 190px;
+  height: auto;
+  margin-bottom: -149px;
+  margin-top: -92px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.nav-logo img:hover {
+  transform: scale(1.08);
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 32px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.nav-menu li {
+  position: relative;
+}
+.nav-menu a {
+  text-decoration: none;
+  color: #333;
+  padding: 5px 8px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+.nav-menu a:hover {
+  color: #ff6600;
+  transform: translateY(-2px);
+}
+.nav-menu hr {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: #ff6600;
+  transition: width 0.3s ease;
+}
+.nav-menu li:hover hr,
+.nav-menu li hr {
+  width: 60%;
+}
+
+.nav-login-cart {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.nav-login-cart button {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 28px;
+  background: linear-gradient(135deg, #ff6600, #ff944d);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+.nav-login-cart button:hover {
+  background: linear-gradient(135deg, #ff6600, #e65100);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(255, 102, 0, 0.35);
+}
+
+.nav-user {
+  position: relative;
+  cursor: pointer;
+}
+.user-icon-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff6600, #ff944d);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+.user-icon-circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(255, 102, 0, 0.4);
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.15);
+  padding: 14px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 200px;
+  z-index: 100;
+  border-radius: 0;
+  animation: dropdownFade 0.25s ease;
+}
+.user-dropdown .welcome {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 18px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  color: #444;
+}
+.user-dropdown a,
+.user-dropdown button {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  padding: 10px 18px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+.user-dropdown a:hover,
+.user-dropdown button:hover {
+  background: linear-gradient(135deg, #ff6600, #ff944d);
+  color: #fff;
+  border-radius: 1px;
+}
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cart-container,
+.wishlist-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.nav-login-cart img {
+  width: 26px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.cart-container:hover img,
+.wishlist-container:hover img {
+  transform: scale(1.12);
+  filter: brightness(1.1);
+}
+
+.nav-cart-count,
+.nav-wishlist-count {
+  position: absolute;
+  top: -6px;
+  right: -9px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ff6600;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.nav-user:hover .user-dropdown {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.25s ease;
+}

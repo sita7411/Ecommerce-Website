@@ -1,0 +1,135 @@
+/* Slide container */
+.promo-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  min-height: 81vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Static Hero */
+.static-hero {
+  min-height: 90vh;
+  background-size: cover;
+  background-position: center;
+}
+
+
+
+
+/* Overlay for text */
+.promo-overlay {
+  width: 70%;
+  max-width: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+/* Text Styling */
+.promo-text {
+  text-align: center;
+  max-width: 650px;
+}
+
+.promo-text h1 {
+  font-size: 48px;
+  font-weight: 700;
+  color: #ff6600;
+  margin-bottom: 20px;
+}
+
+.promo-text p {
+  font-size: 18px;
+  color: #222;
+  margin-bottom: 15px;
+}
+
+.promo-subtext {
+  font-size: 16px;
+  font-style: italic;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+/* Button */
+.promo-btn {
+  padding: 14px 36px;
+  background: linear-gradient(135deg, #ff6600, #ff944d);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.promo-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(255, 102, 0, 0.4);
+  background: linear-gradient(135deg, #ff6600, #e65100);
+}
+
+/* Swiper pagination */
+.swiper-pagination-bullet {
+  background: #ff944d;
+  opacity: 0.6;
+  width: 12px;
+  height: 12px;
+}
+
+.swiper-pagination-bullet-active {
+  background: #ff6600;
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* Animations */
+.fade-in {
+  opacity: 0;
+  animation: fadeUp 1s ease forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .promo-text h1 {
+    font-size: 36px;
+  }
+  .promo-text p {
+    font-size: 16px;
+  }
+  .promo-subtext {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .promo-text h1 {
+    font-size: 28px;
+  }
+  .promo-text p {
+    font-size: 14px;
+  }
+  .promo-btn {
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+}
