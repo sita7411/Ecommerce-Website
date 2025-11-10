@@ -6,6 +6,8 @@ import toast, { Toaster } from "react-hot-toast";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { useAdminAuth } from "../../context/AdminAuthContext"; // for token
 import "../Css/visiblity.css";
+const API_URL = import.meta.env.VITE_API_URL;
+
 
 const PopularProducts = () => {
   const [products, setProducts] = useState([]);
@@ -17,7 +19,7 @@ const PopularProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/products");
+const res = await axios.get(`${API_URL}/api/products`);
         setProducts(res.data);
       } catch (err) {
         console.error("❌ Error fetching products:", err);
@@ -38,7 +40,7 @@ const PopularProducts = () => {
 
     try {
       const res = await axios.put(
-        `http://localhost:4000/api/products/${id}/popular`,
+`${API_URL}/api/products/${id}/popular`,
         { isPopular: !currentStatus },
         {
           headers: {
@@ -61,8 +63,8 @@ const PopularProducts = () => {
   // ✅ Confirm Delete
   const confirmDelete = async () => {
     try {
-      await axios.delete(`http://localhost:4000/api/products/${deleteModal.id}`, {
-        headers: { Authorization: `Bearer ${token}` },
+await axios.delete(`${API_URL}/api/products/${deleteModal.id}`, { 
+  headers: { Authorization: `Bearer ${token}` },
       });
       setProducts((prev) => prev.filter((p) => p._id !== deleteModal.id));
       setDeleteModal({ open: false, id: null });
