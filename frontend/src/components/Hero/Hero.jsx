@@ -9,7 +9,7 @@ import "swiper/css/pagination";
 
 import "./Hero.css";
 
-const API_URL = "http://localhost:4000/api/hero-banners";
+const API_URL = `${process.env.REACT_APP_API_URL}/api/hero-banners`;
 
 const Hero = () => {
   const [slides, setSlides] = useState([]);
@@ -28,7 +28,7 @@ const Hero = () => {
         subtext: banner.subtext || "",
         img: banner.imageUrl.startsWith("http")
           ? banner.imageUrl
-          : `http://localhost:4000${banner.imageUrl}`, // full path for relative URL
+          : `${process.env.REACT_APP_API_URL}${banner.imageUrl}`, // dynamic base URL
         btn: banner.btnText,
         link: banner.btnLink || "#",
       }));
